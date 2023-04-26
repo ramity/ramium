@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  miner_server:
+    container_name: miner_server
+    build:
+      context: ./
+      dockerfile: docker/miner/server/Dockerfile
+    image: miner_server
+    ports:
+      - 65535:65535
+    volumes:
+      - ./bin:/root/sonicash/bin
+      - ./data:/root/sonicash/data
+      - ./include:/root/sonicash/include
+      - ./refs:/root/sonicash/refs
+      - ./scripts:/root/sonicash/scripts
+      - ./src:/root/sonicash/src
+      - ./tests:/root/sonicash/tests
+  miner_client:
+    container_name: miner_client
+    build:
+      context: ./
+      dockerfile: docker/miner/client/Dockerfile
+    image: miner_client
+    volumes:
+      - ./bin:/root/sonicash/bin
+      - ./data:/root/sonicash/data
+      - ./include:/root/sonicash/include
+      - ./refs:/root/sonicash/refs
+      - ./scripts:/root/sonicash/scripts
+      - ./src:/root/sonicash/src
+      - ./tests:/root/sonicash/tests
