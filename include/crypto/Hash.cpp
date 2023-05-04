@@ -1,3 +1,6 @@
+#ifndef __HASH_CPP__
+#define __HASH_CPP__
+
 #include "Hash.h"
 
 #include <iomanip>
@@ -40,3 +43,5 @@ std::string sha512(std::string input)
 
     return stream.str();
 }
+
+#endif
