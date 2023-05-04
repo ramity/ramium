@@ -1,4 +1,4 @@
-# Sonicash
+# Ramium
 
 ![](docs/images/chains.jpg)
 
