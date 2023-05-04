@@ -9,10 +9,6 @@
 #include <cryptopp/base64.h>
 #include <cryptopp/sha.h>
 
-// TODO:
-// - Figure out if I can reuse PK_Enc, PK_Dec, Sign, and verify filters
-
-
 class ECC
 {
     private:
@@ -21,7 +17,7 @@ class ECC
     std::string private_key_path;
 
     // Interal values
-    // CryptoPP::AutoSeededRandomPool prng;
+    CryptoPP::AutoSeededRandomPool prng;
     CryptoPP::ECIES<CryptoPP::ECP>::PrivateKey private_key;
     CryptoPP::ECIES<CryptoPP::ECP>::PublicKey public_key;
     CryptoPP::OID curve;
@@ -73,8 +69,6 @@ class ECC
     std::string encoded_private_key_hash;
 
     public:
-    CryptoPP::AutoSeededRandomPool prng;
-
     // Constructors
     ECC();
     ECC(std::string public_key_path, std::string private_key_path);
