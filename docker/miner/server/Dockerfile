@@ -1,5 +1,5 @@
 FROM gcc:latest
-WORKDIR /root/sonicash
+WORKDIR /root/ramium
 RUN apt update
 RUN apt -y upgrade
 RUN apt -y dist-upgrade

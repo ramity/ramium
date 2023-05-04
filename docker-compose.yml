@@ -9,13 +9,13 @@ services:
     ports:
       - 65535:65535
     volumes:
-      - ./bin:/root/sonicash/bin
-      - ./data:/root/sonicash/data
-      - ./include:/root/sonicash/include
-      - ./refs:/root/sonicash/refs
-      - ./scripts:/root/sonicash/scripts
-      - ./src:/root/sonicash/src
-      - ./tests:/root/sonicash/tests
+      - ./bin:/root/ramium/bin
+      - ./data:/root/ramium/data
+      - ./include:/root/ramium/include
+      - ./refs:/root/ramium/refs
+      - ./scripts:/root/ramium/scripts
+      - ./src:/root/ramium/src
+      - ./tests:/root/ramium/tests
   miner_client:
     container_name: miner_client
     build:
@@ -23,10 +23,10 @@ services:
       dockerfile: docker/miner/client/Dockerfile
     image: miner_client
     volumes:
-      - ./bin:/root/sonicash/bin
-      - ./data:/root/sonicash/data
-      - ./include:/root/sonicash/include
-      - ./refs:/root/sonicash/refs
-      - ./scripts:/root/sonicash/scripts
-      - ./src:/root/sonicash/src
-      - ./tests:/root/sonicash/tests
+      - ./bin:/root/ramium/bin
+      - ./data:/root/ramium/data
+      - ./include:/root/ramium/include
+      - ./refs:/root/ramium/refs
+      - ./scripts:/root/ramium/scripts
+      - ./src:/root/ramium/src
+      - ./tests:/root/ramium/tests
