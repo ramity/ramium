@@ -1,5 +1,5 @@
-#ifndef __RSA_Cipher_h__
-#define __RSA_Cipher_h__
+#ifndef __RSA_CIPHER_H__
+#define __RSA_CIPHER_H__
 
 #include <openssl/rsa.h>
 #include <openssl/pem.h>

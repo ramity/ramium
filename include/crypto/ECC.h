@@ -1,5 +1,5 @@
-#ifndef __RSA_Cipher_h__
-#define __RSA_Cipher_h__
+#ifndef __ECC_H__
+#define __ECC_H__
 
 #include <iostream>
 #include <string>

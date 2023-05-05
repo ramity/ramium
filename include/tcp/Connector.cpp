@@ -1,3 +1,6 @@
+#ifndef __CONNECTOR_CPP__
+#define __CONNECTOR_CPP__
+
 #include "connector.h"
 
 #include <stdio.h>
@@ -142,3 +145,5 @@ int Connector::resolveHostName(const char * hostname, struct in_addr * addr)
 
     return result;
 }
+
+#endif

@@ -1,3 +1,6 @@
+#include <iostream>
+#include <string>
+
 #include "crypto/ECC.cpp"
 
 int main()

@@ -1,3 +1,6 @@
+#ifndef __TRANSACTION_OUTPUT_CPP__
+#define __TRANSACTION_OUTPUT_CPP__
+
 #include "TransactionOutput.h"
 
 #include <string>
@@ -7,38 +10,39 @@
 
 TransactionOutput::TransactionOutput()
 {
-
+    
 }
 
 std::string TransactionOutput::to_string()
 {
     std::string output = "";
-    output += std::to_string(unsigned_int_to_hex_string(this->index));
-    output += std::to_string(unsigned_int_to_hex_string(this->amount));
-    output += std::to_string(unsigned_int_to_hex_string(this->public_key_hash_count));
+    output += unsigned_int_to_hex_string(this->index);
+    output += unsigned_int_to_hex_string(this->amount);
+    output += unsigned_int_to_hex_string(this->public_key_hash_count);
     for (unsigned int z = 0; z < this->public_key_hash_count; z++)
     {
         output += public_key_hashes[z];
     }
     output += this->spent ? '1' : '0';
+    return output;
 }
 
 void TransactionOutput::from_string(std::string input)
 {
-    this->index = hex_string_to_unsigned_int(intput.substr(0, 8));
-    this->amount = hex_string_to_unsigned_int(intput.substr(8, 8));
-    this->public_key_hash_count = hex_string_to_unsigned_int(intput.substr(16, 8));
+    this->index = hex_string_to_unsigned_int(input.substr(0, 8));
+    this->amount = hex_string_to_unsigned_int(input.substr(8, 8));
+    this->public_key_hash_count = hex_string_to_unsigned_int(input.substr(16, 8));
 
     unsigned int start = 24;
     unsigned int size = 88;
     this->clear_public_key_hashes();
     for (unsigned int z = 0; z < this->public_key_hash_count; z++)
     {
-        this->add_public_key_hash(input.substr(start, size))
+        this->add_public_key_hash(input.substr(start, size));
         start += size;
     }
 
-    this->spent = input.substr(start, 1) ? true : false;
+    this->spent = (input.substr(start, 1) == "1") ? true : false;
 }
 
 // Getters
@@ -101,10 +105,12 @@ void TransactionOutput::add_public_key_hash(std::string public_key_hash)
 
 void TransactionOutput::remove_public_key_hash(unsigned int index)
 {
-    this->public_key_hashes.erase(index);
+    this->public_key_hashes.erase(this->public_key_hashes.begin() + index);
 }
 
 void TransactionOutput::clear_public_key_hashes()
 {
     this->public_key_hashes.clear();
 }
+
+#endif

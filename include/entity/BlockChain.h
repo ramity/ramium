@@ -1,5 +1,5 @@
-#ifndef __Transaction_h__
-#define __Transaction_h__
+#ifndef __BLOCK_CHAIN_H__
+#define __BLOCK_CHAIN_H__
 
 #include <string>
 #include <vector>

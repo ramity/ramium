@@ -1,5 +1,5 @@
-#ifndef __Queue_h__
-#define __Queue_h__
+#ifndef __QUEUE_H__
+#define __QUEUE_H__
 
 #include <pthread.h>
 #include <list>

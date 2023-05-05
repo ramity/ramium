@@ -1,5 +1,5 @@
-#ifndef __Block_h__
-#define __Block_h__
+#ifndef __BLOCK_H__
+#define __BLOCK_H__
 
 #include <string>
 #include <vector>

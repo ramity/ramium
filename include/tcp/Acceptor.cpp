@@ -1,3 +1,6 @@
+#ifndef __ACCEPTOR_CPP__
+#define __ACCEPTOR_CPP__
+
 #include "acceptor.h"
 
 #include <stdio.h>
@@ -79,3 +82,5 @@ Stream * Acceptor::accept()
 
     return new Stream(sd, &address);
 }
+
+#endif

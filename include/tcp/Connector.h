@@ -1,5 +1,5 @@
-#ifndef __connector_h__
-#define __connector_h__
+#ifndef __CONNECTOR_H__
+#define __CONNECTOR_H__
 
 #include <netinet/in.h>
 #include "stream.h"

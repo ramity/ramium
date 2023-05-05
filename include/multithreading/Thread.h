@@ -1,5 +1,5 @@
-#ifndef __Thread_h__
-#define __Thread_h__
+#ifndef __THREAD_H__
+#define __THREAD_H__
 
 #include <pthread.h>
 

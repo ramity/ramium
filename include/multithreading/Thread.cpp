@@ -1,3 +1,6 @@
+#ifndef __THREAD_CPP__
+#define __THREAD_CPP__
+
 #include "Thread.h"
 
 static void * runThread(void * arg)
@@ -70,3 +73,5 @@ pthread_t Thread::self()
 {
     return m_tid;
 }
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef __TRANSACTION_INPUT_CPP__
+#define __TRANSACTION_INPUT_CPP__
+
 #include "TransactionInput.h"
 
 #include <string>
@@ -18,19 +21,16 @@ std::string TransactionInput::to_string()
     output += this->ref_transaction_ID;
     output += unsigned_int_to_hex_string(this->ref_transaction_output_index);
     output += unsigned_int_to_hex_string(this->index);
-
     output += unsigned_int_to_hex_string(this->public_key_count);
     for (unsigned int z = 0; z < this->public_key_count; z++)
     {
         output += this->public_keys[z];
     }
-
     output += unsigned_int_to_hex_string(this->signature_count);
     for (unsigned int z = 0; z < this->signature_count; z++)
     {
         output += this->signatures[z];
     }
-
     return output;
 }
 
@@ -194,3 +194,5 @@ std::string TransactionInput::create_signature(ECC * ecc, unsigned int public_ke
     ecc->sign();
     return ecc->get_encoded_signature();
 }
+
+#endif

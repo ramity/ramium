@@ -1,3 +1,6 @@
+#ifndef __RSA_CIPHER_CPP__
+#define __RSA_CIPHER_CPP__
+
 #include "RSACipher.h"
 
 #include <openssl/rsa.h>
@@ -216,3 +219,5 @@ int RSACipher::verify()
 {
     return RSA_verify(NID_sha512, reinterpret_cast<const unsigned char*>(this->plaintext), this->plaintext_length, this->signature, this->signature_length, this->rsa_object);
 }
+
+#endif

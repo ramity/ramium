@@ -1,5 +1,5 @@
-#ifndef __TransactionInput_h__
-#define __TransactionInput_h__
+#ifndef __TRANSACTION_INPUT_H__
+#define __TRANSACTION_INPUT_H__
 
 #include <string>
 #include <vector>

@@ -1,5 +1,5 @@
-#ifndef __Transaction_h__
-#define __Transaction_h__
+#ifndef __TRANSACTION_H__
+#define __TRANSACTION_H__
 
 #include <string>
 #include <vector>

@@ -1,5 +1,5 @@
-#ifndef __stream_h__
-#define __stream_h__
+#ifndef __STREAM_H__
+#define __STREAM_H__
 
 #include <sys/types.h>
 #include <sys/socket.h>

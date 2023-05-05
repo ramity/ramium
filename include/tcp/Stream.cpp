@@ -1,3 +1,6 @@
+#ifndef __STREAM_CPP__
+#define __STREAM_CPP__
+
 #include "stream.h"
 
 #include <arpa/inet.h>
@@ -137,3 +140,5 @@ bool Stream::waitForReadEvent(int timeout)
 
     return false;
 }
+
+#endif

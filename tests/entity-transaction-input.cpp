@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 #include "crypto/ECC.cpp"
 #include "entity/TransactionInput.cpp"

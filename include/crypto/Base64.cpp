@@ -1,3 +1,6 @@
+#ifndef __BASE64_CPP__
+#define __BASE64_CPP__
+
 /*
    base64.cpp and base64.h
 
@@ -279,4 +282,4 @@ std::string base64_decode(std::string_view s, bool remove_linebreaks) {
    return decode(s, remove_linebreaks);
 }
 
-#endif  // __cplusplus >= 201703L
+#endif

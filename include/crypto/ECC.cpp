@@ -1,5 +1,5 @@
-#ifndef __ECC_cpp__
-#define __ECC_cpp__
+#ifndef __ECC_CPP__
+#define __ECC_CPP__
 
 #include "ECC.h"
 

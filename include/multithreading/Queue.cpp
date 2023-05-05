@@ -1,3 +1,6 @@
+#ifndef __QUEUE_CPP__
+#define __QUEUE_CPP__
+
 #include "Queue.h"
 
 template <typename T>
@@ -49,3 +52,5 @@ int Queue<T>::size()
 
     return size;
 }
+
+#endif

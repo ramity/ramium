@@ -1,5 +1,5 @@
-#ifndef __TransactionInput_h__
-#define __TransactionInput_h__
+#ifndef __TRANSACTION_OUTPUT_H__
+#define __TRANSACTION_OUTPUT_H__
 
 #include <string>
 #include <vector>
@@ -30,7 +30,7 @@ class TransactionOutput
 
     // Add, remove, clear
     void add_public_key_hash(std::string public_key_hash);
-    void remove_public_key_hash(std::string public_key_hash);
+    void remove_public_key_hash(unsigned int index);
     void clear_public_key_hashes();
 
     private:

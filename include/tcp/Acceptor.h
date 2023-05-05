@@ -1,5 +1,5 @@
-#ifndef __acceptor_h__
-#define __acceptor_h__
+#ifndef __ACCEPTOR_H__
+#define __ACCEPTOR_H__
 
 #include <string>
 #include <netinet/in.h>

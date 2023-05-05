@@ -1,3 +1,6 @@
+#ifndef __BLOCK_CPP__
+#define __BLOCK_CPP__
+
 #include "Block.h"
 
 #include <iostream>
@@ -230,3 +233,5 @@ void Block::set_merkle_tree(std::vector<std::string> merkle_tree)
 {
     this->merkle_tree = merkle_tree;
 }
+
+#endif
