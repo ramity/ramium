@@ -16,6 +16,8 @@ class Block
     void build_transaction_IDs();
     void build_merkle_tree(ECC * ecc);
     void print_merkle_tree();
+    void calculate_ID(ECC * ecc);
+    bool PoW(ECC * ecc);
 
     // Getters
     std::string get_previous_block_hash();

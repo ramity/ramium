@@ -16,7 +16,8 @@ int main()
     Block * b = new Block();
     b->set_previous_block_hash(ecc->encode(ecc->hash("prev")));
     b->set_timestamp(std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count());
-    b->set_difficulty_target("00" + std::string(86, '1'));
+    // https://pastebin.com/KTPZPsPk
+    b->set_difficulty_target("+B" + std::string(86, 'z'));
     b->set_nonce(0);
 
     b->set_next_block_hash(ecc->encode(ecc->hash("next")));
@@ -67,8 +68,29 @@ int main()
 
     b->build_transaction_IDs();
     b->build_merkle_tree(ecc);
-    b->print_merkle_tree();
-    std::cout << b->get_merkle_root() << std::endl;
+    // b->print_merkle_tree();
+    // std::cout << b->get_merkle_root() << std::endl;
+
+    bool success = false;
+    for (unsigned int z = 0; z < 10000000; z++)
+    {
+        std::cout << '\r' << z;
+        if (b->PoW(ecc))
+        {
+            success = true;
+            break;
+        }
+    }
+
+    std::cout << std::endl;
+
+    if (success)
+    {
+        std::cout << "pog!" << std::endl;
+        std::cout << b->get_ID() << std::endl;
+        std::cout << b->get_difficulty_target() << std::endl;
+        std::cout << b->get_nonce() << std::endl;
+    }
 
     return 0;
 }

@@ -9,6 +9,8 @@
 #include <cmath>
 #include <cassert>
 
+#include "utility/type-conversion.cpp"
+
 Block::Block()
 {
 
@@ -83,6 +85,32 @@ void Block::print_merkle_tree()
         }
     }
     std::cout << std::endl;
+}
+
+void Block::calculate_ID(ECC * ecc)
+{
+    std::string output = "";
+    output += this->previous_block_hash;
+    output += this->merkle_root;
+    output += unsigned_int_to_hex_string(this->timestamp);
+    output += this->difficulty_target;
+    output += this->nonce;
+    this->ID = ecc->encode(ecc->hash(output));
+}
+
+bool Block::PoW(ECC * ecc)
+{
+    calculate_ID(ecc);
+
+    for (unsigned int z = 0; z < 88; z++)
+    {
+        if (this->ID[z] > this->difficulty_target[z])
+        {
+            this->nonce += 1;
+            return false;
+        }
+    }
+    return true;
 }
 
 // Getters
