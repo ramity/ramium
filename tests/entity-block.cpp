@@ -53,7 +53,7 @@ int main()
         t->set_output_count(1);
         t->add_transaction_output(to);
         t->set_ID(t->to_hash(ecc));
-        t->set_timestamp(std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count());
+        t->set_timestamp_now();
         t->set_fees(420);
         t->set_size(0);
         t->set_block_height(100);

@@ -18,6 +18,7 @@ class Transaction
     std::string to_string();
     void from_string(std::string input);
     std::string to_hash(ECC * ecc);
+    void set_timestamp_now();
 
     // Getters
     std::string get_ID();

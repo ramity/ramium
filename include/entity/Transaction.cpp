@@ -5,6 +5,7 @@
 
 #include <string>
 #include <vector>
+#include <chrono>
 
 #include "crypto/ECC.cpp"
 #include "entity/TransactionInput.cpp"
@@ -57,6 +58,11 @@ std::string Transaction::to_hash(ECC * ecc)
         output += this->transaction_outputs[z]->to_string();
     }
     return ecc->encode(ecc->hash(output));
+}
+
+void Transaction::set_timestamp_now()
+{
+    this->timestamp = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
 
 // Getters
