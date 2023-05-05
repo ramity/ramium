@@ -1,3 +1,6 @@
+#ifndef __TYPE_CONVERSION_CPP__
+#define __TYPE_CONVERSION_CPP__
+
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -18,3 +21,5 @@ unsigned int hex_string_to_unsigned_int(std::string input)
     ss >> output;
     return output;
 }
+
+#endif

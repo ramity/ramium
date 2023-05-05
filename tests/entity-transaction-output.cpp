@@ -8,9 +8,6 @@ int main()
     ECC * ecc = new ECC();
     ecc->generate_keys();
 
-    std::string ref_block_ID = ecc->encode(ecc->hash("123"));
-    std::string ref_transaction_ID = ecc->encode(ecc->hash("456"));
-
     TransactionOutput to = TransactionOutput();
     to.set_index(0);
     to.set_amount(100);
@@ -21,4 +18,6 @@ int main()
     to.set_spent(false);
 
     std::cout << to.to_string() << std::endl;
+
+    return 0;
 }

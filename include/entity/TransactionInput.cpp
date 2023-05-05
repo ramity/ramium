@@ -11,7 +11,7 @@
 
 TransactionInput::TransactionInput()
 {
-
+    
 }
 
 std::string TransactionInput::to_string()
