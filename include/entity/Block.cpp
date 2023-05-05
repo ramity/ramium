@@ -99,6 +99,23 @@ void Block::calculate_ID(ECC * ecc)
     this->ID = ecc->encode(ecc->hash(output));
 }
 
+unsigned int Block::benchmark_calculate_ID(ECC * ecc)
+{
+    auto start = std::chrono::steady_clock::now();
+    auto end = start + std::chrono::seconds(10);
+
+    unsigned int count = 0;
+    while (std::chrono::steady_clock::now() < end)
+    {
+        this->calculate_ID(ecc);
+        count++;
+    }
+
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+    std::cout << "The method was called " << count << " times in " << duration / 1000000.0 << " seconds." << std::endl;
+    return count;
+}
+
 bool Block::PoW(ECC * ecc)
 {
     calculate_ID(ecc);

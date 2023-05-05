@@ -16,6 +16,7 @@ class Block
     void build_merkle_tree(ECC * ecc);
     void print_merkle_tree();
     void calculate_ID(ECC * ecc);
+    unsigned int benchmark_calculate_ID(ECC * ecc);
     bool PoW(ECC * ecc);
     void set_timestamp_now();
 

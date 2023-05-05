@@ -70,6 +70,9 @@ int main()
     // b->print_merkle_tree();
     // std::cout << b->get_merkle_root() << std::endl;
 
+    // ~90000h/s
+    b->benchmark_calculate_ID(ecc);
+
     bool success = false;
     for (unsigned int z = 0; z < 10000000; z++)
     {
