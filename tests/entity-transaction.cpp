@@ -12,12 +12,9 @@ int main()
     ECC * ecc = new ECC();
     ecc->generate_keys();
 
-    std::string ref_block_ID = ecc->encode(ecc->hash("123"));
-    std::string ref_transaction_ID = ecc->encode(ecc->hash("456"));
-
     TransactionInput * ti = new TransactionInput();
-    ti->set_ref_block_ID(ref_block_ID);
-    ti->set_ref_transaction_ID(ref_transaction_ID);
+    ti->set_ref_block_ID(ecc->encode(ecc->hash("123")));
+    ti->set_ref_transaction_ID(ecc->encode(ecc->hash("456")));
     ti->set_ref_transaction_output_index(0);
     ti->set_index(0);
     ti->set_public_key_count(1);
@@ -42,11 +39,7 @@ int main()
     t->set_output_count(1);
     t->add_transaction_output(to);
     t->set_ID(t->to_hash(ecc));
-    std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-    std::chrono::seconds unix_time = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch());
-    std::time_t unix_timestamp = unix_time.count();
-    unsigned int timestamp = static_cast<unsigned int>(unix_timestamp);
-    t->set_timestamp(timestamp);
+    t->set_timestamp(std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count());
     t->set_fees(420);
     t->set_size(0);
     t->set_block_height(100);
