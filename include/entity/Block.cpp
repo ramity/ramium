@@ -8,6 +8,7 @@
 #include <string>
 #include <cmath>
 #include <cassert>
+#include <chrono>
 
 #include "utility/type-conversion.cpp"
 
@@ -111,6 +112,11 @@ bool Block::PoW(ECC * ecc)
         }
     }
     return true;
+}
+
+void Block::set_timestamp_now()
+{
+    this->timestamp = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
 
 // Getters

@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <chrono>
 
 #include "crypto/ECC.cpp"
 #include "entity/Block.cpp"
@@ -15,9 +14,9 @@ int main()
 
     Block * b = new Block();
     b->set_previous_block_hash(ecc->encode(ecc->hash("prev")));
-    b->set_timestamp(std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count());
+    b->set_timestamp_now();
     // https://pastebin.com/KTPZPsPk
-    b->set_difficulty_target("+B" + std::string(86, 'z'));
+    b->set_difficulty_target("+N" + std::string(86, 'z'));
     b->set_nonce(0);
 
     b->set_next_block_hash(ecc->encode(ecc->hash("next")));
@@ -74,12 +73,12 @@ int main()
     bool success = false;
     for (unsigned int z = 0; z < 10000000; z++)
     {
-        std::cout << '\r' << z;
         if (b->PoW(ecc))
         {
             success = true;
             break;
         }
+        std::cout << '\r' << b->get_ID();
     }
 
     std::cout << std::endl;

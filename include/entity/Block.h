@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <chrono>
 
 #include "Transaction.cpp"
 
@@ -18,6 +17,7 @@ class Block
     void print_merkle_tree();
     void calculate_ID(ECC * ecc);
     bool PoW(ECC * ecc);
+    void set_timestamp_now();
 
     // Getters
     std::string get_previous_block_hash();
