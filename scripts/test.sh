@@ -1,6 +1,6 @@
-INC="/root/sonicash/include/"
-BIN="/root/sonicash/bin/test"
-TGT="/root/sonicash/tests/*"
+INC="/root/ramium/include/"
+BIN="/root/ramium/bin/test"
+TGT="/root/ramium/tests/*"
 
 # Remove bin file if it exists
 if [ -f "$BIN" ]
@@ -14,8 +14,6 @@ do
     if [ -f "$FILE" ]
     then
         echo -e "\033[36m[C] Compiling\t$FILE\033[0m"
-        # Old: When cryptopp was installed. Left for reference
-        # g++ -Wall -I $INC $FILE -o $BIN -lssl -lcrypto -lpthread -lcryptopp
         g++ -Wall -I $INC $FILE -o $BIN -lssl -lcrypto -lpthread -lcryptopp
 
         if [ -f "$BIN" ]

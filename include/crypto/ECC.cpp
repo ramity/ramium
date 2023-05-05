@@ -1,3 +1,6 @@
+#ifndef __ECC_cpp__
+#define __ECC_cpp__
+
 #include "ECC.h"
 
 #include <iostream>
@@ -17,8 +20,8 @@ ECC::ECC():
     hasher(this->hash_method, new CryptoPP::Redirector(this->output_sink))
 {
     // Config
-    this->set_public_key_path("/root/sonicash/data/public_key");
-    this->set_private_key_path("/root/sonicash/data/private_key");
+    this->set_public_key_path("/root/ramium/data/public_key");
+    this->set_private_key_path("/root/ramium/data/private_key");
     this->curve = CryptoPP::ASN1::secp521r1();
     this->output = "";
 }
@@ -147,6 +150,22 @@ void ECC::init_key_operations()
     this->verifier_filter = new CryptoPP::SignatureVerificationFilter(
         *this->verifier
     );
+
+    // Convert public_key to all public_key variants
+    this->output = "";
+    public_key.Save(this->output_sink);
+    this->raw_public_key = this->output;
+    this->encoded_public_key = this->encode(this->raw_public_key);
+    this->raw_public_key_hash = this->hash(this->raw_public_key);
+    this->encoded_public_key_hash = this->encode(this->raw_public_key_hash);
+
+    // Convert private_key to all private_key variants
+    // this->output = "";
+    // private_key.Save(this->output_sink);
+    // this->raw_private_key = this->output;
+    // this->encoded_private_key = this->encode(this->raw_private_key);
+    // this->raw_private_key_hash = this->hash(this->raw_private_key);
+    // this->encoded_private_key_hash = this->encode(this->raw_private_key_hash);
 }
 
 void ECC::encrypt()
@@ -419,3 +438,5 @@ void ECC::set_encoded_private_key_hash(std::string encoded_private_key_hash)
 {
     this->encoded_private_key_hash = encoded_private_key_hash;
 }
+
+#endif

@@ -14,8 +14,8 @@ RSACipher::RSACipher()
     this->key_length = 4096;
     this->public_exponent = 65537;
     this->modulus_size = this->key_length / 8;
-    this->set_public_key_path("/root/sonicash/data/public_key");
-    this->set_private_key_path("/root/sonicash/data/private_key");
+    this->set_public_key_path("/root/ramium/data/public_key");
+    this->set_private_key_path("/root/ramium/data/private_key");
 
     // Init
     this->rsa_object = RSA_new();
@@ -37,8 +37,8 @@ RSACipher::RSACipher(int key_length)
     this->key_length = key_length;
     this->public_exponent = 65537;
     this->modulus_size = this->key_length / 8;
-    this->set_public_key_path("/root/sonicash/data/public_key");
-    this->set_private_key_path("/root/sonicash/data/private_key");
+    this->set_public_key_path("/root/ramium/data/public_key");
+    this->set_private_key_path("/root/ramium/data/private_key");
 
     // Init
     this->rsa_object = RSA_new();
@@ -60,8 +60,8 @@ RSACipher::RSACipher(int key_length, int public_exponent)
     this->key_length = key_length;
     this->public_exponent = public_exponent;
     this->modulus_size = this->key_length / 8;
-    this->set_public_key_path("/root/sonicash/data/public_key");
-    this->set_private_key_path("/root/sonicash/data/private_key");
+    this->set_public_key_path("/root/ramium/data/public_key");
+    this->set_private_key_path("/root/ramium/data/private_key");
 
     // Init
     this->rsa_object = RSA_new();

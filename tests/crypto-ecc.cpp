@@ -39,5 +39,8 @@ int main()
         return 1;
     }
 
+    std::cout << ecc.get_encoded_signature() << std::endl;
+    // std::cout << ecc2.get_encoded_public_key_hash() << std::endl;
+
     return 0;
 }

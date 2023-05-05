@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "utility/unit-conversion.cpp"
+#include "utility/type-conversion.cpp"
 
 TransactionOutput::TransactionOutput()
 {
@@ -28,6 +28,17 @@ void TransactionOutput::from_string(std::string input)
     this->index = hex_string_to_unsigned_int(intput.substr(0, 8));
     this->amount = hex_string_to_unsigned_int(intput.substr(8, 8));
     this->public_key_hash_count = hex_string_to_unsigned_int(intput.substr(16, 8));
+
+    unsigned int start = 24;
+    unsigned int size = 88;
+    this->clear_public_key_hashes();
+    for (unsigned int z = 0; z < this->public_key_hash_count; z++)
+    {
+        this->add_public_key_hash(input.substr(start, size))
+        start += size;
+    }
+
+    this->spent = input.substr(start, 1) ? true : false;
 }
 
 // Getters
