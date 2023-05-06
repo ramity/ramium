@@ -44,7 +44,12 @@ void Transaction::from_string(std::string input)
 
 }
 
-std::string Transaction::to_hash(ECC * ecc)
+void Transaction::set_timestamp_now()
+{
+    this->timestamp = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+}
+
+void Transaction::calculate_ID(ECC * ecc)
 {
     std::string output = "";
     output += unsigned_int_to_hex_string(this->input_count);
@@ -55,15 +60,13 @@ std::string Transaction::to_hash(ECC * ecc)
     output += unsigned_int_to_hex_string(this->output_count);
     for (unsigned int z = 0; z < this->output_count; z++)
     {
-        output += this->transaction_outputs[z]->to_string();
+        std::string transaction_output_string = this->transaction_outputs[z]->to_string();
+        transaction_output_string.pop_back();
+        output += transaction_output_string;
     }
-    return ecc->encode(ecc->hash(output));
+    this->ID = ecc->encode(ecc->hash(output));
 }
 
-void Transaction::set_timestamp_now()
-{
-    this->timestamp = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-}
 
 // Getters
 std::string Transaction::get_ID()

@@ -52,7 +52,7 @@ int main()
         t->add_transaction_input(ti);
         t->set_output_count(1);
         t->add_transaction_output(to);
-        t->set_ID(t->to_hash(ecc));
+        t->calculate_ID(ecc);
         t->set_timestamp_now();
         t->set_fees(420);
         t->set_size(0);

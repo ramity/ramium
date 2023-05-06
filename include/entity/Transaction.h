@@ -17,8 +17,8 @@ class Transaction
     // Utility methods
     std::string to_string();
     void from_string(std::string input);
-    std::string to_hash(ECC * ecc);
     void set_timestamp_now();
+    void calculate_ID(ECC * ecc);
 
     // Getters
     std::string get_ID();
