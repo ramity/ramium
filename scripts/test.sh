@@ -8,6 +8,12 @@ then
     rm $BIN
 fi
 
+# Check if a specific test was passed
+if [ $1 ]
+then
+    TGT="${TGT%?}$1"
+fi
+
 # Compile and execute each file in tests dir
 for FILE in $TGT
 do
@@ -27,7 +33,10 @@ do
                 echo -e "\033[33m[F] Failed\t$FILE\033[0m"
             fi
 
-            rm $BIN
+            if [ -f "$BIN" ]
+            then
+                rm $BIN
+            fi
         else
             echo -e "\033[31m[C] Failed\t$FILE\033[0m"
         fi
