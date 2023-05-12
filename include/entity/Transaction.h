@@ -8,6 +8,20 @@
 #include "entity/TransactionInput.cpp"
 #include "entity/TransactionOutput.cpp"
 
+// Transaction ID:
+// hash(hash(transaction data))
+
+// Transaction data
+// - input count
+// - transaction inputs
+// - output count
+// - transaction outputs
+// NOTE:
+// - disclude signature data
+// - disclude size
+// - disclude fees
+//   - calculated by the delta between inputs and outputs
+
 class Transaction
 {
     public:
