@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cryptopp/base64.h>
 
 #include "crypto/ECC.cpp"
 #include "entity/Block.cpp"
@@ -12,18 +13,17 @@ int main()
     ECC * ecc = new ECC();
     ecc->generate_keys();
 
-    Block * b = new Block();
-    b->set_previous_block_hash(ecc->encode(ecc->hash("prev")));
+    Block * b = new Block(ecc);
+    b->set_previous_block_hash(ecc->hash(ecc->hash("prev")));
     b->set_timestamp_now();
-    // https://pastebin.com/KTPZPsPk
-    b->set_difficulty_target("+N" + std::string(86, 'z'));
+    b->set_difficulty_target("\x80\x80" + std::string(62, '\x7F'));
     b->set_nonce(0);
 
-    b->set_next_block_hash(ecc->encode(ecc->hash("next")));
+    b->set_next_block_hash(ecc->hash(ecc->hash("next")));
     b->set_height(0);
     b->set_confirmations(0);
-    b->set_transaction_count(6);
 
+    b->set_transaction_count(6);
     for (unsigned int z = 0; z < b->get_transaction_count(); z++)
     {
         TransactionInput * ti = new TransactionInput();
@@ -66,33 +66,33 @@ int main()
     }
 
     b->build_transaction_IDs();
-    b->build_merkle_tree(ecc);
+    b->build_merkle_tree();
     // b->print_merkle_tree();
-    // std::cout << b->get_merkle_root() << std::endl;
 
-    // ~90000h/s
-    b->benchmark_calculate_ID(ecc);
+    unsigned int hash_rate = 900000;
+    unsigned int desired_seconds = 5;
+    unsigned int desired_hashes = hash_rate * desired_seconds;
+    unsigned int max_value = 4294967295;
+    unsigned int difficulty_value = max_value - desired_hashes;
+    std::cout << difficulty_value << std::endl;
 
-    bool success = false;
+    b->calculate_preamble();
+
     for (unsigned int z = 0; z < 10000000; z++)
     {
-        if (b->PoW(ecc))
+        std::cout << "\r" << z;
+        if (b->proof_of_work())
         {
-            success = true;
+            std::cout << std::endl;
+            std::cout << "pog!" << std::endl;
+            std::cout << ecc->encode(b->get_ID()) << std::endl;
+            std::cout << ecc->encode(b->get_difficulty_target()) << std::endl;
+            std::cout << b->get_formatted_nonce() << std::endl;
             break;
         }
-        std::cout << '\r' << b->get_ID();
     }
 
     std::cout << std::endl;
-
-    if (success)
-    {
-        std::cout << "pog!" << std::endl;
-        std::cout << b->get_ID() << std::endl;
-        std::cout << b->get_difficulty_target() << std::endl;
-        std::cout << b->get_nonce() << std::endl;
-    }
 
     return 0;
 }
