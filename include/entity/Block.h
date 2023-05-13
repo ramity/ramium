@@ -8,15 +8,6 @@
 #include "crypto/ECC.cpp"
 #include "Transaction.cpp"
 
-// Format:
-// (private)
-// properties
-// (public)
-// utility methods
-// getters
-// setters
-// add, remove, clear
-
 class Block
 {
     //! Constructors
@@ -38,6 +29,8 @@ class Block
     //*  + proof of work
     //* - Planned:
     //*  + proof of stake
+    //*  + proof of authority
+    //*  + proof of work & authority (authorized miners)
     // [
     public:
         bool proof_of_work();
@@ -239,7 +232,7 @@ class Block
     // ]
 
     //! Transaction count
-    //* - The number of Transaction objects contained by this block
+    //* - The number of Transactions contained by this block
     // [
     private:
         // Properties
@@ -255,7 +248,7 @@ class Block
     // ]
 
     //! Transactions
-    //* - Vector of Transaction objects contained by this block
+    //* - Vector of Transaction pointers contained by this block
     // [
     private:
         // Properties
