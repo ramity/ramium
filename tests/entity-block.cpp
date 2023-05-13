@@ -47,20 +47,15 @@ int main()
         );
         to->set_spent(false);
 
-        Transaction * t = new Transaction();
+        Transaction * t = new Transaction(ecc);
         t->set_input_count(1);
         t->add_transaction_input(ti);
         t->set_output_count(1);
         t->add_transaction_output(to);
-        t->calculate_ID(ecc);
+        t->calculate_ID();
         t->set_timestamp_now();
         t->set_fees(420);
         t->set_size(0);
-        t->set_block_height(100);
-        t->set_confirmations(10);
-        std::string output = t->to_string();
-        unsigned int size = output.size();
-        t->set_size(size);
 
         b->add_transaction(t);
     }
